@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>date-of-leap-year</title>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <td><b>Month</b></td>
+            <td><b>Year</b></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input id="m" type="number" ></td>
+            <td><input id="y" type="number" ></td>
+            <td>
+                <button type="button" onclick="checking();">Checking...</button>
+            </td>
+        </tr>
+    </table>
+    Reslut:
+    <output id="output1"></output>
+    <output id="output"></output>
+</form>
+<script>
+    function checking() {
+        let result1 = "";
+        let result2 = "";
+        let year = document.getElementById("y").value;
+        year = parseFloat(year);
+        let month = document.getElementById("m").value;
+        month = parseFloat(month);
+        let isLeapYear = false;
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                if (year % 400 == 0) {
+                    isLeapYear = true;
+                }
+            } else {
+                isLeapYear = true;
+            }
+        }
+        if(isLeapYear){
+            result1=(year + " là năm nhuận");
+        } else {
+            result1=(year + " không là năm nhuận");
+        }
+        document.getElementById("output1").innerHTML = result1;
+        switch (month){
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                result2("Tháng " + month + " có 31 ngày");
+                document.getElementById("output").innerHTML = result2;
+                break;
+            case 2:
+                if(isLeapYear){
+                    result2=("Tháng " + month + " có 29 ngày");
+                    document.getElementById("output").innerHTML = result2;
+                } else {
+                    result2=("Tháng " + month + " có 28 ngày");
+                    document.getElementById("output").innerHTML = result2;
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                result2=("Tháng " + month + " có 30 ngày");
+                document.getElementById("output").innerHTML = result2;
+                break;
+            default:
+                result2=("Không có tháng " + month);
+                document.getElementById("output").innerHTML = result2;
+
+        }
+    }
+</script>
+</body>
+</html>
